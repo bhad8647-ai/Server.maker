@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b18">
+  <title>Beros — Welcome</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      color-scheme: dark;
+      --bg: #080b18;
+      --panel: rgba(19, 25, 48, 0.88);
+      --text: #f5f7ff;
+      --muted: #9ca8c5;
+      --accent: #8b7cff;
+      --accent2: #54d6ff;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 15% 10%, #25245a 0%, transparent 42%),
+        radial-gradient(ellipse at 90% 85%, #123b53 0%, transparent 38%),
+        var(--bg);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .logo {
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 14px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      font-size: 27px;
+      font-weight: 900;
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 8px 35px rgba(107, 106, 255, 0.3);
+    }
+
+    .brand h1 {
+      font-size: 30px;
+      letter-spacing: 1px;
+    }
+
+    .brand p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .card {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--panel);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      padding: 5px;
+      margin-bottom: 26px;
+      background: rgba(255, 255, 255, 0.045);
+      border-radius: 12px;
+    }
+
+    .tab {
+      border: 0;
+      padding: 12px;
+      color: var(--muted);
+      background: transparent;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .tab.active {
+      color: white;
+      background: #34345e;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #d8def0;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: rgba(5, 8, 20, 0.65);
+      color: white;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(139, 124, 255, 0.13);
+    }
+
+    input::placeholder {
+      color: #6f7996;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .primary, .google, .secondary {
+      width: 100%;
+      min-height: 47px;
+      padding: 13px 16px;
+      border-radius: 11px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+
+    .primary {
+      border: none;
+      color: white;
+      background: linear-gradient(100deg, #7968f5, #4a9cf5);
+      box-shadow: 0 8px 22px rgba(100, 104, 245, 0.2);
+    }
+
+    .google, .secondary {
+      border: 1px solid var(--border);
+      color: white;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .primary:hover, .google:hover, .secondary:hover {
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      transform: none;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      color: #7984a0;
+      font-size: 12px;
+    }
+
+    .divider::before, .divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    .forgot-row {
+      text-align: right;
+      margin-top: -5px;
+      margin-bottom: 18px;
+    }
+
+    .link {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #aaa1ff;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+      display: none;
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.error {
+      color: #ffb4bd;
+      background: rgba(255, 70, 100, 0.1);
+      border: 1px solid rgba(255, 70, 100, 0.22);
+    }
+
+    .message.success {
+      color: #9df5ca;
+      background: rgba(45, 210, 135, 0.1);
+      border: 1px solid rgba(45, 210, 135, 0.22);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .user-icon {
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .user-email {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+      margin: 12px 0 24px;
+      line-height: 1.6;
+    }
+
+    .footer {
+      text-align: center;
+      color: #7d87a2;
+      font-size: 12px;
+      margin-top: 23px;
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding: 16px;
+      }
+
+      .card {
+        padding: 23px 19px;
+      }
+
+      .brand h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <header class="brand">
+      <div class="logo">B</div>
+      <h1>BEROS</h1>
+      <p>Your account. Your space.</p>
+    </header>
+
+    <section class="card" id="authView">
+      <div class="tabs">
+        <button class="tab active" id="loginTab" type="button">
+          Sign In
+        </button>
+        <button class="tab" id="registerTab" type="button">
+          Create Account
+        </button>
+      </div>
+
+      <div id="loginPanel">
+        <h2>Welcome back</h2>
+        <p class="subtitle">Sign in to continue to your account.</p>
+
+        <form id="loginForm">
+          <div class="field">
+            <label for="loginEmail">Email address</label>
+            <input
+              id="loginEmail"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="loginPassword">Password</label>
+            <input
+              id="loginPassword"
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            >
+          </div>
+
+          <div class="forgot-row">
+            <button class="link" id="forgotBtn" type="button">
+              Forgot password?
+            </button>
+          </div>
+
+          <button class="primary" id="loginBtn" type="submit">
+            Sign In
+          </button>
+        </form>
+
+        <div class="divider">OR CONTINUE WITH</div>
+
+        <button class="google" id="googleBtn" type="button">
+          Continue with Google
+        </button>
+      </div>
+
+      <div id="registerPanel" class="hidden">
+        <h2>Create your account</h2>
+        <p class="subtitle">Join Beros in just a few steps.</p>
+
+        <form id="registerForm">
+          <div class="field">
+            <label for="registerName">Your name</label>
+            <input
+              id="registerName"
+              name="name"
+              type="text"
+              placeholder="Your full name"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="registerEmail">Email address</label>
+            <input
+              id="registerEmail"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="registerPassword">Password</label>
+            <input
+              id="registerPassword"
+              name="password"
+              type="password"
+              placeholder="At least 6 characters"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="confirmPassword">Confirm password</label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              placeholder="Enter password again"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            >
+          </div>
+
+          <button class="primary" id="registerBtn" type="submit">
+            Create Account
+          </button>
+        </form>
+
+        <div class="divider">OR</div>
+
+        <button class="google" id="googleRegisterBtn" type="button">
+          Sign up with Google
+        </button>
+      </div>
+
+      <div class="message" id="authMessage" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="card hidden" id="userView">
+      <div class="user-icon" id="userAvatar">B</div>
+      <h2 id="userGreeting">You're signed in!</h2>
+      <p class="subtitle">Welcome to your Beros account.</p>
+      <p class="user-email" id="userEmail"></p>
+      <button class="secondary" id="logoutBtn" type="button">
+        Sign Out
+      </button>
+      <div class="message" id="userMessage" role="status" aria-live="polite"></div>
+    </section>
+
+    <footer class="footer">
+      © 2026 Beros. All rights reserved.
+    </footer>
+  </main>
+
+  <!-- Your authentication code is kept in a separate JavaScript file. -->
+  <script type="module" src="./auth.js"></script>
+</body>
+</html>
